@@ -59,5 +59,4 @@
 void flight_batt_init(void);
 void flight_batt_read(void);
 
-
 #endif /* FLIGHT_BATT_H_ */
