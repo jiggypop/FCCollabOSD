@@ -42,6 +42,10 @@
 // JRChange: JR specials
 //#define JR_SPECIALS
 
+// jiggypop: ENABLE_TIME_RESET_THROTTLE
+// Can't have this and JR_SPECIALS both defined
+#define ENABLE_TIME_RESET_THROTTLE
+
 // JRChange: OP debug
 //#define OP_DEBUG
 

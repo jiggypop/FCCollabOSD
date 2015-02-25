@@ -52,6 +52,7 @@ TODO:
 #define MODE_SWITCH_TIME	2000	// [ms]	time for mode switching
 
 #define TIME_RESET_AMPERE	2	// [A]	current above which the on time is set to 00:00
+#define TIME_RESET_THROTTLE	15	// [%]	throttle % position above which the on time is set to 00:00
 
 
 /******* GLOBAL VARS *******/
@@ -847,10 +848,27 @@ void panBatteryPercent(int first_col, int first_line) {
 void panTime(int first_col, int first_line) {
     int start_time;
 
-#ifdef JR_SPECIALS	// Time and travel distance reset when measured current > TIME_RESET_AMPERE for the 1st time
+// #ifdef JR_SPECIALS	// Time and travel distance reset when measured current > TIME_RESET_AMPERE for the 1st time
+//     static unsigned long engine_start_time = 0;
+// 
+//     if (engine_start_time == 0 && osd_curr_A > TIME_RESET_AMPERE * 100) {
+//         engine_start_time = millis();
+// 	osd_travel_distance = 0;
+//     }
+//     start_time = (int) ((millis() - engine_start_time) / 1000);
+// #else
+//     start_time = (int) (millis() / 1000);
+// #endif
+
     static unsigned long engine_start_time = 0;
-    
+
+#if defined JR_SPECIALS	|| defined ENABLE_TIME_RESET_THROTTLE
+#ifdef JR_SPECIALS // Time and travel distance reset when measured current > TIME_RESET_AMPERE for the 1st time
     if (engine_start_time == 0 && osd_curr_A > TIME_RESET_AMPERE * 100) {
+#endif
+#ifdef ENABLE_TIME_RESET_THROTTLE  // Time and travel distance reset when throttle % position > TIME_RESET_THROTTLE for the 1st time
+    if (engine_start_time == 0 && osd_throttle > TIME_RESET_THROTTLE) {
+#endif
         engine_start_time = millis();
 	osd_travel_distance = 0;
     }
