@@ -887,7 +887,7 @@ void panTime(int first_col, int first_line) {
     if (engine_start_time == 0 && osd_curr_A > TIME_RESET_AMPERE * 100) {
 #endif
 #ifdef ENABLE_TIME_RESET_THROTTLE  // Time and travel distance reset when throttle % position > TIME_RESET_THROTTLE for the 1st time
-    if (engine_start_time == 0 && osd_throttle > TIME_RESET_THROTTLE) {
+      if (engine_start_time == 0 && osd_throttle > TIME_RESET_THROTTLE && osd_armed != 0) {
 #endif
         engine_start_time = millis();
 	osd_travel_distance = 0;

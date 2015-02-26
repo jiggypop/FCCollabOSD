@@ -23,7 +23,8 @@ static int16_t      osd_curr_A = 0;                 // Battery A current
 static int8_t       osd_battery_remaining_A = 0;    // 0 to 100 <=> 0 to 1000
 static uint8_t      batt_warn_level = 0;
 
-static uint8_t      osd_mode = 0;                   // FlightMode of the FlightControl
+// static uint8_t      osd_mode = 0;                   // FlightMode of the FlightControl
+static uint8_t      osd_mode = 1;                   // Start out in ST1
 
 static uint8_t      osd_satellites_visible = 0;     // number of satelites
 static uint8_t      osd_fix_type = 0;               // GPS lock 0-1=no fix, 2=2D, 3=3D
