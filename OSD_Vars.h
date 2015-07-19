@@ -49,6 +49,7 @@ static float        osd_home_lon = 0;               // home longitude
 static float        osd_home_alt = 0;               // home altitude
 static long         osd_home_distance = 0;          // distance from home
 static uint8_t      osd_home_direction;             // arrow direction pointing to home (1-16 to CW loop)
+static char         char_call[OSD_CALL_SIGN_TOTAL+1] = {0};
 
 // OpenPilot UAVTalk:
 static uint8_t      op_uavtalk_mode = 0;            // OP UAVTalk mode, start with normal behavior
@@ -123,6 +124,7 @@ byte panTune_XY[2][npanels];
 //byte panSetup_XY[2];
 byte panRSSI_XY[2][npanels];
 byte panDistance_XY[2][npanels];
+byte panCALLSIGN_XY[2][npanels];
 
 
 //*************************************************************************************************************

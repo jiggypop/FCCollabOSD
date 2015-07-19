@@ -134,8 +134,8 @@ void writePanels() {
 	    }
 
 	    if (ISd(panel,RSSI_BIT))		panRSSI(panRSSI_XY[0][panel], panRSSI_XY[1][panel]);
-            if (ISa(panel,Rol_BIT))		panRoll(panRoll_XY[0][panel], panRoll_XY[1][panel]);
-            if (ISa(panel,Pit_BIT))		panPitch(panPitch_XY[0][panel], panPitch_XY[1][panel]);
+            // if (ISa(panel,Rol_BIT))		panRoll(panRoll_XY[0][panel], panRoll_XY[1][panel]);
+            // if (ISa(panel,Pit_BIT))		panPitch(panPitch_XY[0][panel], panPitch_XY[1][panel]);
             if (ISc(panel,Thr_BIT))		panThr(panThr_XY[0][panel], panThr_XY[1][panel]);
             if (ISc(panel,FMod_BIT))		panFlightMode(panFMod_XY[0][panel], panFMod_XY[1][panel]);
             if (ISa(panel,BatA_BIT))		panBatt_A(panBatt_A_XY[0][panel], panBatt_A_XY[1][panel]);
@@ -144,6 +144,7 @@ void writePanels() {
             if (ISb(panel,Time_BIT))		panTime(panTime_XY[0][panel], panTime_XY[1][panel]);
 	    
             if (ISc(panel,Hor_BIT))		panHorizon(panHorizon_XY[0][panel], panHorizon_XY[1][panel]);
+            if (ISd(panel,CALLSIGN_BIT))        panCALLSIGN(panCALLSIGN_XY[0][panel], panCALLSIGN_XY[1][panel]);
 #ifdef SHOW_RADAR
 	    // these GPS related panels are active if GPS was valid before
 	    if (osd_got_home) {
@@ -151,6 +152,7 @@ void writePanels() {
 	    }
 #endif
 	} else { // off panel
+            if (ISd(0,CALLSIGN_BIT))        panCALLSIGN(panCALLSIGN_XY[0][panel], panCALLSIGN_XY[1][panel]);
 		panOff();
 	}
     }
@@ -502,6 +504,20 @@ void panLogo() {
     osd.closePanel();
 }
 
+/* **************************************************************** */
+// Panel  : panCALLSIGN
+// Needs  : X, Y locations
+// Output : Call sign identification
+// Size   : 1 x 6Hea  (rows x chars)
+// Staus  : done
+
+void panCALLSIGN(int first_col, int first_line){
+    osd.setPanel(first_col, first_line);
+    osd.openPanel();
+    osd.printf("%s", char_call); 
+    osd.closePanel();
+}
+
 
 /******************************************************************/
 // Panel  : panGPSats
@@ -709,30 +725,30 @@ void panRSSI(int first_col, int first_line) {
 }
 
 
-/******************************************************************/
-// Panel  : panRoll
-// Needs  : X, Y locations
-// Output : -+ value of current Roll from vehicle with degree symbols and roll symbol
-/******************************************************************/
-void panRoll(int first_col, int first_line) {
-    osd.setPanel(first_col, first_line);
-    osd.openPanel();
-    osd.printf("%4i%c%c", osd_roll, 0xb0, 0xb2);
-    osd.closePanel();
-}
-
-
-/******************************************************************/
-// Panel  : panPitch
-// Needs  : X, Y locations
-// Output : -+ value of current Pitch from vehicle with degree symbols and pitch symbol
-/******************************************************************/
-void panPitch(int first_col, int first_line) {
-    osd.setPanel(first_col, first_line);
-    osd.openPanel();
-    osd.printf("%4i%c%c", osd_pitch, 0xb0, 0xb1);
-    osd.closePanel();
-}
+// /******************************************************************/
+// // Panel  : panRoll
+// // Needs  : X, Y locations
+// // Output : -+ value of current Roll from vehicle with degree symbols and roll symbol
+// /******************************************************************/
+// void panRoll(int first_col, int first_line) {
+//     osd.setPanel(first_col, first_line);
+//     osd.openPanel();
+//     osd.printf("%4i%c%c", osd_roll, 0xb0, 0xb2);
+//     osd.closePanel();
+// }
+// 
+// 
+// /******************************************************************/
+// // Panel  : panPitch
+// // Needs  : X, Y locations
+// // Output : -+ value of current Pitch from vehicle with degree symbols and pitch symbol
+// /******************************************************************/
+// void panPitch(int first_col, int first_line) {
+//     osd.setPanel(first_col, first_line);
+//     osd.openPanel();
+//     osd.printf("%4i%c%c", osd_pitch, 0xb0, 0xb1);
+//     osd.closePanel();
+// }
 
   
 /******************************************************************/

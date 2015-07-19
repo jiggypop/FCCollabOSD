@@ -123,6 +123,7 @@ void setup()
     pinMode(10, OUTPUT); // USB ArduCam Only
 #endif
     pinMode(MAX7456_SELECT,  OUTPUT); // OSD CS
+    pinMode(13, OUTPUT); // MinimOSD LED
 
     Serial.begin(TELEMETRY_SPEED);
     // setup mavlink port
